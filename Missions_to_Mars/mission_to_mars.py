@@ -40,7 +40,6 @@ def NasaMarsNews():
 # In[15]:
 
 
-NasaMarsNews()
 
 
 # ### JPL Mars Space Images - Featured Image
@@ -53,10 +52,12 @@ NasaMarsNews()
 
 #src="www.jpl.nasa.gov/spaceimages/images/largesize/PIA24012_hires.jpg"
 #url = 'https://photojournal.jpl.nasa.gov/jpegMod/PIA23896_modest.jpg'
+import time
 def MarsSpaceImages ():
     url = 'https://www.jpl.nasa.gov/spaceimages/details.php?id=PIA23896'
     browser = Browser('chrome', **executable_path, headless=True)
     browser.visit(url)
+    time.sleep(5)
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
     relative_path = soup.find('figure', class_='lede').a['href']
@@ -89,14 +90,13 @@ def MarsWeather():
     browser.visit(url)
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
-    results = soup.find('div', class_='css-901oao r-hkyrab r-1qd0xha r-a023e6 r-16dba41 r-ad9z0x r-bcqeeo r-bnwqim r-qvutc0')
+    results = soup.find('div', class_="js-tweet-text-container")
     mars_weather = results.text
     browser.quit()
 
     return(mars_weather)
 
 
-# In[46]:
 
 
 
@@ -109,14 +109,30 @@ def MarsWeather():
 # In[49]:
 
 
+# def MarsFacts():
+#     url = 'https://space-facts.com/mars/'
+#     tables = pd.read_html(url)
+#     df = tables[0]
+#     df.columns = ['Characteristic Feather', 'Value']
+#     df.set_index('Characteristic Feather', inplace=True)
+#     df.index.names = ['']
+#     return(df)
+
 def MarsFacts():
-    url = 'https://space-facts.com/mars/'
-    tables = pd.read_html(url)
-    df = tables[0]
-    df.columns = ['Characteristic Feather', 'Value']
-    df.set_index('Characteristic Feather', inplace=True)
-    df.index.names = ['']
-    return(df)
+    url="https://space-facts.com/mars/"
+    browser=Browser("chrome", **executable_path, headless=False)
+    browser.visit(url)
+    fact_table=(pd.read_html(browser.html))
+    fact_table=fact_table[0]
+    fact_table.columns=['Characteristic Feather', 'Value']
+    fact_table=fact_table.to_html(classes='marsinformation')
+    fact_table=fact_table.replace('\n', ' ')    
+    browser.quit()
+   
+    return (fact_table)
+
+
+  
 
 
 # In[50]:
@@ -178,9 +194,10 @@ def scrape():
         relative_url =  result.find('a')["href"]
         final_url = base + relative_url 
         url_list.append(final_url)
+
     results = {"news": NasaMarsNews(),
     "Image": MarsSpaceImages(), 
-  #  "weather":MarsWeather(), 
+ ##   "weather":MarsWeather(), 
     "facts":MarsFacts(), 
     "hemispheres":Mars_Hemispheres(url_list)
     }

@@ -25,8 +25,8 @@
 	
 	<div class="container-fluid">
             <div class="row">
-              <div class="col-sm">
-                    <h3>Featured Image of Mars</h3>   
+              <div class="col-sm fluid">
+                    <h3>Featured  Mars Image</h3>   
                     <img src="{{mars_data.Image}}" alt="Featured Image of Mars"/>
               </div>
 			  
@@ -41,7 +41,34 @@
                 </div>
              </div>          
     </div>
-	
+
+    
+<div class="container-fluid">
+  <div class="row" id="mars-hemispheres" style="margin-top:80px;">
+
+    <div class="page-header">
+      <h2 class="text-center">Mars Hemispheres</h2>
+    </div>
+
+    <div>
+      {% for hemisphere in mars_data.hemisphere_image_urls %}
+      <div class="col-md-6">
+        <div class="thumbnail">
+
+          <!-- if images is False/None/non-existent, then default to error message -->
+          <img src="{{hemispheres.url_list | default('static/images/error.png', true)}}" alt="...">
+          <div class="caption">
+            <h3>
+              <!-- write code to rander hemisphere title -->
+              {{hemisphere.title}}
+            </h3>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
 	
   </div>
   </div>
