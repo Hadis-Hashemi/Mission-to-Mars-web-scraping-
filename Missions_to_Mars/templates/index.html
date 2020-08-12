@@ -51,12 +51,12 @@
     </div>
 
     <div>
-      {% for hemisphere in mars_data.hemisphere_image_urls %}
+      {% for hemisphere in mars_data.hemispheres %}
       <div class="col-md-6">
         <div class="thumbnail">
 
           <!-- if images is False/None/non-existent, then default to error message -->
-          <img src="{{hemispheres.url_list | default('static/images/error.png', true)}}" alt="...">
+          <img src="{{hemisphere.img_url | default('static/images/error.png', true)}}" alt="...">
           <div class="caption">
             <h3>
               <!-- write code to rander hemisphere title -->
