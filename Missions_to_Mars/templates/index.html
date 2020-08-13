@@ -19,26 +19,30 @@
 	
 	
 	<div class="container-fluid" >
-		<h3>Latest Mars News</h3>
+    
+		    <h1 class = "font-weight-bolder"> Latest Mars News </h1>
         <h2>{{mars_data.news}}</h2>
-    </div>
+  </div>
 	
 	<div class="container-fluid">
             <div class="row">
               <div class="col-sm fluid">
-                    <h3>Featured  Mars Image</h3>   
-                    <img src="{{mars_data.Image}}" alt="Featured Image of Mars"/>
+                    <h1 >Featured  Mars Image</h1>   
+                    <img class= "img-responsive" src="{{mars_data.Image}}" alt="Featured Image of Mars"/>
               </div>
 			  
-              <div class="col-sm">
-					<h2>Current Weather On  Mars</h2>
-					<div>{{mars_data.weather}}</div>
-              </div>
+            <div class="col-sm">
+              <div class="container-fluid">
+
+				   	<h1>Current Weather On  Mars</h1>
+				   	<div>{{mars_data.weather}}</div>
+            </div>
 				
-                <div class="col-sm">
-                  <h2>Mars Facts:</h2>
-                  <html>{{mars_data.facts}}</html>
-                </div>
+                
+                  <h1>Mars Facts:</h1>
+                  <html>{{mars_data.facts| safe}}</html>
+                
+
              </div>          
     </div>
 
@@ -56,12 +60,12 @@
         <div class="thumbnail">
 
           <!-- if images is False/None/non-existent, then default to error message -->
-          <img src="{{hemisphere.img_url | default('static/images/error.png', true)}}" alt="...">
+          <img width="400" height="400" src="{{hemisphere.img_url | default('static/images/error.png', true)}}" alt="...">
           <div class="caption">
-            <h3>
+            <h2 class="text-center">
               <!-- write code to rander hemisphere title -->
               {{hemisphere.title}}
-            </h3>
+            </h2>
           </div>
         </div>
       </div>
