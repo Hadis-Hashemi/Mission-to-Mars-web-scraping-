@@ -17,41 +17,57 @@
 		</div>
 	</div> 
 	
+	<div class = "row">
+    <div class = "col-md-12">
+      <h1 class = "font-weight-bolder"> Latest Mars News </h1>
+      <h2>{{mars_data.title}}</h2>
+      <p>{{mars_data.Paragraph}}</p>
+    </div>
+    <!-- <div class="container-fluid" > -->
+
+</div>
+
+
 	
-	<div class="container-fluid" >
-    
-		    <h1 class = "font-weight-bolder"> Latest Mars News </h1>
-        <h2>{{mars_data.news}}</h2>
-  </div>
-	
-	<div class="container-fluid">
-            <div class="row">
-              <div class="col-sm fluid">
+          <div class="row">
+              <div class="col-lg-8">
                     <h1 >Featured  Mars Image</h1>   
                     <img class= "img-responsive" src="{{mars_data.Image}}" alt="Featured Image of Mars"/>
               </div>
 			  
-            <div class="col-sm">
-              <div class="container-fluid">
+            <div class="col-lg-4">
+              <div class = "row">
+                <div class = "col-lg-12">
 
-				   	<h1>Current Weather On  Mars</h1>
-				   	<div>{{mars_data.weather}}</div>
+                   <h1>Current Weather On  Mars</h1>
+                   <p>{{mars_data.weather}}</p>
+                  
+                </div>
+              </div>
+
+
+              <div class = "row">
+                <div class = "col-lg-12">
+                   <h1>Mars Facts:</h1>
+                   <p>{{mars_data.facts| safe}}</p>
+
+
+                </div> 
+              </div>
             </div>
-				
-                
-                  <h1>Mars Facts:</h1>
-                  <html>{{mars_data.facts| safe}}</html>
-                
 
-             </div>          
-    </div>
+
+
+           </div>
+         
+  
 
     
 <div class="container-fluid">
   <div class="row" id="mars-hemispheres" style="margin-top:80px;">
 
     <div class="page-header">
-      <h2 class="text-center">Mars Hemispheres</h2>
+      <h1 class="text-center">Mars Hemispheres</h1>
     </div>
 
     <div>
@@ -60,7 +76,7 @@
         <div class="thumbnail">
 
           <!-- if images is False/None/non-existent, then default to error message -->
-          <img width="400" height="400" src="{{hemisphere.img_url | default('static/images/error.png', true)}}" alt="...">
+          <img src="{{hemisphere.img_url | default('static/images/error.png', true)}}" alt="...">
           <div class="caption">
             <h2 class="text-center">
               <!-- write code to rander hemisphere title -->
@@ -74,8 +90,13 @@
   </div>
 </div>
 	
-  </div>
-  </div>
+ <!-- jQuery CDN -->
+ <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+ <!-- Bootstrap CDN -->
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+
+
 </body>
 
 </html>

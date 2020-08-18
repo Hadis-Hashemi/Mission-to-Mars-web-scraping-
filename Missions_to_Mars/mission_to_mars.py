@@ -34,7 +34,7 @@ def NasaMarsNews():
     title = soup.find('div', class_='bottom_gradient').text
     news = soup.find('div', class_='article_teaser_body').text
     browser.quit()
-    return (title, news)
+    return title, news
 
 
 # In[15]:
@@ -194,10 +194,11 @@ def scrape():
         relative_url =  result.find('a')["href"]
         final_url = base + relative_url 
         url_list.append(final_url)
-
-    results = {"news": NasaMarsNews(),
+    title, Para = NasaMarsNews()
+    results = {"title": title,
+    "Paragraph" : Para,
     "Image": MarsSpaceImages(), 
- ##   "weather":MarsWeather(), 
+    ##"weather":MarsWeather(), 
     "facts":MarsFacts(), 
     "hemispheres":Mars_Hemispheres(url_list)
     }
