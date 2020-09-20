@@ -182,7 +182,7 @@ def Mars_Hemispheres(url_list):
 
 
 # In[ ]:
-
+# define a scrap function to call of the other function
 def scrape():
     url_list = []
     base ='https://astrogeology.usgs.gov'
